@@ -1,0 +1,497 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block content %}
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- header section start -->
+	
+        <!-- header section end -->
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>{{chosen_product.name}}</h2>
+							<ul class="text-left">
+								<li><a href="{% url 'index' %}">Home </a></li>
+								<li><span> // </span><a href="{% url 'product-list' %}">Products </a></li>
+								<li><span> // </span>{{chosen_product.name}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+        <!-- product-details-section-start -->
+		<div class="product-details pages section-padding-top">
+			<div class="container">
+				<div class="row">
+					<div class="single-list-view">
+						<div class="col-xs-12 col-sm-5 col-md-4">
+							<div class="quick-image">
+								<div class="single-quick-image text-center">
+									<div class="list-img">
+										<div class="product-img tab-content">
+											<div class="simpleLens-container tab-pane fade in" id="sin-1">
+												<div class="pro-type">
+													<span>new</span>
+												</div>
+												<a class="simpleLens-image" data-lens-image="{{ main_pv.images_of_pv.first }}" href="#"><img src="{{ main_pv.images_of_pv.first }}" alt="" class="simpleLens-big-image"></a>
+											</div>
+											<div class="simpleLens-container tab-pane active fade in" id="sin-2">
+												<div class="pro-type sell">
+													<span>sell</span>
+												</div>
+												<a class="simpleLens-image" data-lens-image="{{ main_pv.images_of_pv.all.1 }}" href="#"><img src="{{ main_pv.images_of_pv.all.1 }}" alt="" class="simpleLens-big-image"></a>
+											</div>
+											<div class="simpleLens-container tab-pane fade in" id="sin-3">
+												<div class="pro-type">
+													<span>-15%</span>
+												</div>
+												<a class="simpleLens-image" data-lens-image="{{ main_pv.images_of_pv.all.2 }}" href="#"><img src="{{ main_pv.images_of_pv.all.2 }}" alt="" class="simpleLens-big-image"></a>
+											</div>
+											<div class="simpleLens-container tab-pane fade in" id="sin-4">
+												<div class="pro-type">
+													<span>new</span>
+												</div>
+												<a class="simpleLens-image" data-lens-image="{{ main_pv.images_of_pv.all.3 }}" href="#"><img src="{{ main_pv.images_of_pv.all.3 }}" alt="" class="simpleLens-big-image"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="quick-thumb">
+									<ul class="product-slider">
+										<li><a data-toggle="tab" href="#sin-1"> <img src="{{ main_pv.images_of_pv.first }}" alt="quick view" /> </a></li>
+										<li class="active"><a data-toggle="tab" href="#sin-2"> <img src="{{ main_pv.images_of_pv.all.1 }}" alt="small image" /> </a></li>
+										<li><a data-toggle="tab" href="#sin-3"> <img src="{{ main_pv.images_of_pv.all.2 }}" alt="small image" /> </a></li>
+										<li><a data-toggle="tab" href="#sin-4"> <img src="{{ main_pv.images_of_pv.all.3 }}" alt="small image" /> </a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-7 col-md-8">
+							<div class="quick-right">
+								<div class="list-text">
+									<h3>{{chosen_product.name}}</h3>
+									<span>{{chosen_product.category}}</span>
+									<div class="ratting floatright">
+										<p>( {{chosen_product.reviews_of_product.all.count}} Reviews, Rating: {{average_of_reviews}})</p>
+										<!-- <i class="mdi mdi-star"></i>
+										<i class="mdi mdi-star"></i>
+										<i class="mdi mdi-star"></i>
+										<i class="mdi mdi-star-half"></i>
+										<i class="mdi mdi-star-outline"></i> -->
+									</div>
+									<h5>${{chosen_product.price}}</h5>
+									<p>{{chosen_product.description}}</p>
+									<div class="all-choose">
+										<div class="s-shoose">
+											<h5>Color</h5>
+											<div class="color-select clearfix">
+												<span color="lightsalmon" class="color_of_product"></span>
+												<span color="hexcyan" class="color_of_product"></span>
+												<span class="outline color_of_product" color="pumpkin"></span>
+												<span color="tomato" class="color_of_product"></span>
+												<span color="darksalmon" class="color_of_product"></span>
+												<span color="deepbluesky" class="color_of_product"></span>
+												<span color="dodgerblue3" class="color_of_product"></span>
+											</div>
+										</div>
+										<div class="s-shoose">
+											<h5>size</h5>
+											<div class="size-drop">
+												<div class="btn-group">
+													<!-- <button type="button" class="btn">XS</button> -->
+													<!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+														<!-- <span class=""><i class="mdi mdi-chevron-down"></i></span> -->
+													<!-- </button> -->
+													<select class="size_of_product" style="outline: none; border: none;">
+														<option value="xs"><li><a>XS</a></li></option>
+														<option value="s"><li><a>S</a></li></option>
+														<option value="m"><li><a>M</a></li></option>
+														<option value="l"><li><a>L</a></li></option>
+														<option value="xl"><li><a>XL</a></li></option>
+														<!-- <li><a>S</a></li> -->
+														<!-- <li><a>M</a></li> -->
+														<!-- <li><a>L</a></li> -->
+														<!-- <li><a>XL</a></li> -->
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="s-shoose">
+											<h5>qty</h5>
+											<form action="" method="POST">
+												<div class="plus-minus">
+													<a class="dec qtybutton">-</a>
+													<input type="text" value="1" name="qtybutton" class="plus-minus-box quantity_of_product">
+													<a class="inc qtybutton">+</a>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="list-btn">
+										{% if request.user.is_authenticated %}
+										<a product_id="{{chosen_product.id}}" class="add_to_card_button">add to cart</a>
+										<a product_id="{{chosen_product.id}}" class="add_to_wishlist_button">wishlist</a>
+										{% else %}
+										<a href="{% url 'login' %}">add to cart</a>
+										<a href="{% url 'login' %}">wishlist</a>
+										{% endif %}
+										
+										<!-- <a href="#" data-toggle="modal" data-target="#quick-view">zoom</a> -->
+									</div>
+									<div class="share-tag clearfix">
+										<ul class="blog-share floatleft">
+											<li><h5>share </h5></li>
+											<li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-linkedin"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-vimeo"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-dribbble"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- single-product item end -->
+				<!-- reviews area start -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="reviews padding60 margin-top">
+							<ul class="reviews-tab clearfix">
+								<!-- <li><a data-toggle="tab" href="#moreinfo">more info</a></li> -->
+								<li class="active"><a data-toggle="tab" href="#reviews">Reviews</a></li>
+								<!-- <li><a data-toggle="tab" href="#tags">tags</a></li> -->
+							</ul>
+							<div class="tab-content">
+								<div class="info-reviews review-text tab-pane fade in active" id="reviews">
+									{% for comment in chosen_product.reviews_of_product.all %}
+									<div class="about-author">
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author1.png'%}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">{{comment.reviewer_name}}</a></h4>
+												<span class="floatright ratting">
+													{{comment.review_star}}
+													<i class="mdi mdi-star"></i>
+												</span>
+												<span>{{ comment.created_at|date:'d M, Y'}}</span>
+												<p>{{comment.review_text}}</p>
+											</div>
+										</div>
+									</div>
+									<hr>
+									{% endfor %}
+									<!-- <div class="about-author">
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author2.png' %}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">Gregory Hernandez</a></h4>
+												<span class="floatright ratting">
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star-half"></i>
+													<i class="mdi mdi-star-outline"></i>
+												</span>
+												<span>27 Jun, 2016 at 2:30pm</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget eni Praesent et messages in consectetur.</p>
+											</div>
+										</div>
+									</div>
+									<hr />
+									<div class="about-author">
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author3.png' %}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">Gregory Hernandez</a></h4>
+												<span class="floatright ratting">
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star"></i>
+													<i class="mdi mdi-star-half"></i>
+													<i class="mdi mdi-star-outline"></i>
+												</span>
+												<span>27 Jun, 2016 at 2:30pm</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget eni Praesent et messages in consectetur.</p>
+											</div> 
+										</div>
+									 </div> -->
+									<div class="your-rating log-title">
+										<h3>leave your review</h3>
+										<h5>Your rating</h5>
+										<div class="rating clearfix">
+											<ul>
+												<li>
+													<a class="star_review" star_count=1>
+														<i class="mdi mdi-star-outline"></i>
+													</a>
+													<span>|</span>
+												</li>
+												<li>
+													<a class="star_review" star_count=2>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+													</a>
+													<span>|</span>
+												</li>
+												<li>
+													<a class="star_review" star_count=3>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+													</a>
+													<span>|</span>
+												</li>
+												<li>
+													<a class="star_review" star_count=4>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+													</a>
+													<span>|</span>
+												</li>
+												<li>
+													<a class="star_review" star_count=5>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+														<i class="mdi mdi-star-outline"></i>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="custom-input">
+										<form method="post" action="">{% csrf_token %}
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="input-mail">
+														<!-- {{review_form.reviewer_name}} -->
+														<input type="text" name="reviewer_name" maxlength="50" required="" id="id_reviewer_name" placeholder="Your Name">
+														<!-- <input type="text" name="name" placeholder="Your Name" /> -->
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="input-mail">
+														<!-- {{review_form.reviewer_email}} -->
+														<input type="email" name="reviewer_email" maxlength="254" required="" id="id_reviewer_email" placeholder="Your Email">
+														<!-- <input type="text" name="email" placeholder="Your Email" /> -->
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="custom-mess">
+														<!-- {{review_form.review_text}} -->
+														<textarea name="review_text" cols="40" rows="2" required="" id="id_review_text" spellcheck="false" placeholder="Your Review"></textarea>
+														<!-- <textarea name="message" placeholder="Your Review" rows="2"></textarea> -->
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="submit-text">
+														<button product_id="{{chosen_product.id}}"type="submit" id="submitreviewbutton">submit review</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="info-reviews tags tab-pane fade in" id="tags">
+									<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, semt mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- reviews area end -->
+			</div>
+		</div>
+		<!-- product-details section end -->
+        <!-- related-products section start -->
+		<section class="single-products section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="section-title text-center">
+							<h2>related Products</h2>
+						</div>
+					</div>
+				</div>
+				{% if related_products %}
+				{% for product in related_products %}
+				<div class="row text-center">
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="single-product">
+							<div class="product-img">
+								<div class="pro-type">
+									<span>new</span>
+								</div>
+								<a href="#"><img src="{{product.versions.first.images_of_pv.first }}" alt="Product Title" /></a>
+								<div class="actions-btn">
+									<a href="#"><i class="mdi mdi-cart"></i></a>
+									<!-- <a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a> -->
+									<a href="#"><i class="mdi mdi-heart"></i></a>
+								</div>
+							</div>
+							<div class="product-dsc">
+								<p><a href="#">{{product.name}}</a></p>
+								<span>${{product.price}}</span>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				{% endif %}
+				</div>
+			</div>
+		</section>
+		<!-- related-products section end -->
+        <!-- quick view start -->
+		<div class="product-details quick-view modal animated zoomInUp" id="quick-view">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="d-table">
+							<div class="d-tablecell">
+								<div class="modal-dialog">
+									<div class="main-view modal-content">
+										<div class="modal-footer" data-dismiss="modal">
+											<span>x</span>
+										</div>
+										<div class="row">
+											<div class="col-xs-12 col-sm-5 col-md-4">
+												<div class="quick-image">
+													<div class="single-quick-image text-center">
+														<div class="list-img">
+															<div class="product-img tab-content">
+																<div class="simpleLens-container tab-pane fade in" id="q-sin-1">
+																	<div class="pro-type">
+																		<span>new</span>
+																	</div>
+																	<a class="simpleLens-image" data-lens-image="{% static 'img/products/z1.jpg' %}" href="#"><img src="{% static 'img/products/z1.jpg' %}" alt="" class="simpleLens-big-image"></a>
+																</div>
+																<div class="simpleLens-container tab-pane active fade in" id="q-sin-2">
+																	<div class="pro-type sell">
+																		<span>sell</span>
+																	</div>
+																	<a class="simpleLens-image" data-lens-image="{% static 'img/products/z2.jpg '%}" href="#"><img src="{% static 'img/products/z2.jpg'%}" alt="" class="simpleLens-big-image"></a>
+																</div>
+																<div class="simpleLens-container tab-pane fade in" id="q-sin-3">
+																	<div class="pro-type">
+																		<span>-15%</span>
+																	</div>
+																	<a class="simpleLens-image" data-lens-image="{% static 'img/products/z3.jpg'%}" href="#"><img src="{% static 'img/products/z3.jpg' %}" alt="" class="simpleLens-big-image"></a>
+																</div>
+																<div class="simpleLens-container tab-pane fade in" id="q-sin-4">
+																	<div class="pro-type">
+																		<span>new</span>
+																	</div>
+																	<a class="simpleLens-image" data-lens-image="{% static 'img/products/z4.jpg '%}" href="#"><img src="{% static 'img/products/z4.jpg'%}" alt="" class="simpleLens-big-image"></a>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="quick-thumb">
+														<ul class="product-slider">
+															<li><a data-toggle="tab" href="#q-sin-1"> <img src="{% static 'img/products/s1.jpg' %}" alt="quick view" /> </a></li>
+															<li class="active"><a data-toggle="tab" href="#q-sin-2"> <img src="{% static 'img/products/s2.jpg' %}" alt="small image" /> </a></li>
+															<li><a data-toggle="tab" href="#q-sin-3"> <img src="{% static 'img/products/s3.jpg' %}" alt="small image" /> </a></li>
+															<li><a data-toggle="tab" href="#q-sin-4"> <img src="{% static 'img/products/s4.jpg' %}" alt="small image" /> </a></li>
+														</ul>
+													</div>
+												</div>						
+											</div>
+											<div class="col-xs-12 col-sm-7 col-md-8">
+												<div class="quick-right">
+													<div class="list-text">
+														<h3>men’s White t-shirt</h3>
+														<span>Summer men’s fashion</span>
+														<div class="ratting floatright">
+															<p>( 27 Rating )</p>
+															<i class="mdi mdi-star"></i>
+															<i class="mdi mdi-star"></i>
+															<i class="mdi mdi-star"></i>
+															<i class="mdi mdi-star-half"></i>
+															<i class="mdi mdi-star-outline"></i>
+														</div>
+														<h5><del>$79.30</del> $69.30</h5>
+														<p>There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humour, or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum, you neede be sure there isn't anything embarrassing hidden in the middle of text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+														<div class="all-choose">
+															<div class="s-shoose">
+																<h5>Color</h5>
+																<div class="color-select clearfix">
+																	<span></span>
+																	<span class=""></span>
+																	<span></span>
+																	<span></span>
+																</div>
+															</div>
+															<div class="s-shoose">
+																<h5>size</h5>
+																<div class="size-drop">
+																	<div class="btn-group">
+																		<button type="button" class="btn">XL</button>
+																		<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																			<span class=""><i class="mdi mdi-chevron-down"></i></span>
+																		</button>
+																		<ul class="dropdown-menu">
+																			<li><a href="#">Xl</a></li>
+																			<li><a href="#">SL</a></li>
+																			<li><a href="#">S</a></li>
+																			<li><a href="#">L</a></li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+															<div class="s-shoose">
+																<h5>Quantity</h5>
+																<form action="#" method="POST">
+																	<div class="plus-minus">
+																		<a class="dec qtybutton">-</a>
+																		<input type="text" value="1" name="qtybutton" class="plus-minus-box add_to_card_button">
+																		<a class="inc qtybutton">+</a>
+																	</div>
+																</form>
+															</div>
+														</div>
+														<div class="list-btn">
+															<a href="#">add to cart</a>
+															<a href="#">wishlist</a>
+															<a href="#">zoom</a>
+														</div>
+														<div class="share-tag clearfix">
+															<ul class="blog-share floatleft">
+																<li><h5>share </h5></li>
+																<li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+																<li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+																<li><a href="#"><i class="mdi mdi-linkedin"></i></a></li>
+																<li><a href="#"><i class="mdi mdi-vimeo"></i></a></li>
+																<li><a href="#"><i class="mdi mdi-dribbble"></i></a></li>
+																<li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- quick view end -->
+        
+        
+{% endblock content %}

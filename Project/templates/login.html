@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block content %}
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- header section start -->
+	
+        <!-- header section end -->
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>Register</h2>
+							<ul class="text-left">
+								<li><a href="index.html">Home </a></li>
+								<li><span> // </span>Register</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+		<!-- login content section start -->
+		<section class="pages login-page section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="main-input padding60">
+							<div class="log-title">
+								<h3><strong>registered customers</strong></h3>
+							</div>
+							<div class="login-text">
+								<div class="custom-input">
+									<p>If you have an account, Please log in!</p>
+									<p style="font-size: 20px; color: red;">{{ message_fail }}</p>
+									<p style="font-size: 20px; color: green;">{{ message_suc }}</p>
+
+									<form method="post" action="" id="loginform">{% csrf_token %}
+										<input type="email" name="login_email" required="" id="id_login_email" placeholder="Email">
+										{{login_form.login_email.errors}}
+										<input type="password" name="login_password" required="" id="id_login_password" placeholder="Password">
+										{{login_form.login_password.errors}}
+										<a class="forget" href="{% url 'password_reset' %}">Forget your password?</a>
+										<div class="submit-text">
+											<button id="login-form-submit" type="submit" name='login'>login</button>
+										</div>
+
+										
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="main-input padding60 new-customer">
+							<div class="log-title">
+								<h3><strong>new customers</strong></h3>
+							</div>
+							<div class="custom-input">
+								<form action="/new_user_post/" method="post">{% csrf_token %}
+									
+									<input type="text" name="register_name" maxlength="255" required="" id="id_register_name" placeholder="Name here..">
+									{{ register_form.register_name.errors }}
+									<input type="email" name="register_email" required="" id="id_register_email" placeholder="Email here..">
+									{{ register_form.register_email.errors }}
+									<input type="text" name="register_phone_number" maxlength="255" required="" id="id_register_phone_number" placeholder="Phone Number..">
+									{{ register_form.register_phone_number.errors }}
+									<input type="password" name="register_password" required="" id="id_register_password" placeholder="Password">
+									{{ register_form.register_password.errors }}
+									<input type="password" name="register_password_again" required="" id="id_register_password_again" placeholder="Confirm Password">
+									{{ register_form.register_password_again.errors }}
+									<label class="first-child" style="float: right;">
+										<input type="radio" name="rememberme" value="forever">
+										Sign up for our newsletter!
+									</label>
+									<div class="submit-text coupon">
+										<button id="register-form-submit" type="submit" name='register'>Register</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- login content section end -->
+        
+        
+		
+{% endblock content %}

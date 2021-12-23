@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block content %}
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- header section start -->
+	
+        <!-- header section end -->
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>Order Complete</h2>
+							<ul class="text-left">
+								<li><a href="index.html">Home </a></li>
+								<li><span> // </span>Order Complete</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+		<!-- order-complete content section start -->
+		<section class="pages checkout order-complete section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<div class="complete-title">
+							<p>Thank you. Your order has been received.</p>
+						</div>
+						<div class="order-no clearfix">
+							<ul>
+								<li>order no <span>{{order.id}}</span></li>
+								<li>Date<span>{{ order.created_at|date:'b d, Y' }}</span></li>
+								<li>total<span>$ {{order.basket.total_price}}</span></li>
+								<li>payment method<span>check payment</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<div class="padding60">
+							<div class="log-title">
+								<h3><strong>your order</strong></h3>
+							</div>
+							<div class="cart-form-text pay-details">
+								<table>
+									<thead>
+										<tr>
+											<th>Product</th>
+											<td>Total</td>
+										</tr>
+									</thead>
+									<tbody>
+										{% for basket_item in order.basket.product_list.all %}
+										<tr>
+											<th>{{basket_item.product_version.product.name}}  x {{basket_item.quantity}}</th>
+											<td>${{basket_item.price_of_basket_item}}</td>
+										</tr>
+										{% endfor %}
+										<!-- <tr>
+											<th>Men’s Black Shirt  x 1</th>
+											<td>$69.00</td>
+										</tr>
+										<tr>
+											<th>Cart Subtotal</th>
+											<td>$155.00</td>
+										</tr>
+										<tr>
+											<th>Shipping and Handing</th>
+											<td>$15.00</td>
+										</tr>
+										<tr>
+											<th>Vat</th>
+											<td>$00.00</td>
+										</tr> -->
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Order total</th>
+											<td>${{basket.total_price}}</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<div class="order-address bill padding60">
+							<div class="log-title">
+								<h3><strong>Billing address</strong></h3>
+							</div>
+							<p>{{order.billing_address.billing_address_first_name}}, {{order.billing_address.billing_address_last_name}}, {{order.billing_address.billing_address_country.name}}, {{order.billing_address.billing_address_address}} </p>
+							<p>Phone:  {{order.billing_address.billing_address_mobile_phone}},</p>
+							<p>Email:  {{order.billing_address.billing_address_email}}</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+
+			        
+{% endblock content %}
